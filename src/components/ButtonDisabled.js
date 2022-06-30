@@ -7,27 +7,8 @@ const limite = (...aa) => {
   return false;
 };
 const ButtonDisabled = (aa) => {
-  const {
-    cardName,
-    cardDescription,
-    cardImage,
-    cardRare,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-  } = aa;
-  const arr = [
-    cardName,
-    cardDescription,
-    cardImage,
-    cardRare,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-  ];
-
-  if (!arr.some((bb) => !bb)) {
-    return limite(cardAttr1, cardAttr2, cardAttr3);
+  if (!aa.some((bb) => !bb)) {
+    return limite(aa[4], aa[5], aa[6]);
   }
 
   return false;

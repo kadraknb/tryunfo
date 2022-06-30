@@ -1,30 +1,62 @@
-<input
-          type="textarea"
-          name="description-input"
-          data-testid="description-input"
-        ></input>
-        <input
-          type="number"
-          name="attr1-input"
-          data-testid="attr1-input"
-        ></input>
-        <input
-          type="number"
-          name="attr2-input"
-          data-testid="attr2-input"
-        ></input>
-        <input
-          type="number"
-          name="attr3-input"
-          data-testid="attr3-input"
-        ></input>
-        <input type="text" name="image-input" data-testid="image-input"></input>
-        <input type="select" name="rare-input" data-testid="rare-input"></input>
-        <input
-          type="checkbox"
-          name="trunfo-input"
-          data-testid="trunfo-input"
-        ></input>
+import React from 'react';
+import Form from './components/Form';
+import Card from './components/Card';
+import ButtonDisabled from './components/ButtonDisabled';
 
+class App extends React.Component {
+  constructor() {
+    super();
 
-        name="name-input" data-testid="name-input"
+    this.state = {
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+      hasTrunfo: false,
+      isSaveButtonDisabled: false,
+    };
+  }
+
+  onInputChange = (event) => {
+    const { value, name, checked, type } = event.target;
+    const res = type === 'checkbox' ? checked : value;
+    this.setState({ [name]: res });
+  };
+
+  render() {
+    const { state } = this;
+    const arr = [
+      state.cardName,
+      state.cardDescription,
+      state.cardImage,
+      state.cardRare,
+      state.cardAttr1,
+      state.cardAttr2,
+      state.cardAttr3,
+    ];
+    return (
+      <>
+        <Form
+          onInputChange={ this.onInputChange }
+          isSaveButtonDisabled={ !ButtonDisabled(arr) }
+        />
+        <Card
+          cardName={ arr[0] }
+          cardDescription={ arr[1] }
+          cardImage={ arr[2] }
+          cardRare={ arr[3] }
+          cardAttr1={ arr[4] }
+          cardAttr2={ arr[5] }
+          cardAttr3={ arr[6] }
+          cardTrunfo={ state.cardTrunfo }
+        />
+      </>
+    );
+  }
+}
+
+export default App;
