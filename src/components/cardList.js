@@ -18,6 +18,7 @@ class CardList extends React.Component {
               cardAttr3={aa[6]}
               cardTrunfo={aa[7]}
             />
+            {/* <button onClick={} >Excluir</button> */}
           </li>
         ))}
       </ol>
