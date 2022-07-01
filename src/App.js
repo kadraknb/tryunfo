@@ -2,10 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import ButtonDisabled from './components/ButtonDisabled';
-import Button from './components/save-button';
 import CardList from './components/cardList';
-
-const { saveButton, clickButton } = Button;
 
 class App extends React.Component {
   constructor() {
@@ -21,21 +18,32 @@ class App extends React.Component {
       cardAttr3: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
       listaSalva: [],
     };
+  }
+
+  temTriunfo = () => {
+    const { state } = this;
+    this.setState({ isSaveButtonDisabled: !ButtonDisabled(state) });
+
+    if (state.cardTrunfo || state.listaSalva.some((bb) => bb.cardTrunfo)) {
+      this.setState({ hasTrunfo: true });
+    } else { this.setState({ hasTrunfo: false }); }
   }
 
   onInputChange = (event) => {
     const { value, name, checked, type } = event.target;
     const res = type === 'checkbox' ? checked : value;
-    this.setState({ [name]: res });
+    this.setState(({ [name]: res }), () => this.temTriunfo());
   };
 
-  saveLista = (event, arr) => {
+  // ButtonDisabled(state)
+
+  saveLista = (event, save) => {
     event.preventDefault();
     this.setState((prevState) => ({
-      listaSalva: [...prevState.listaSalva, arr],
+      listaSalva: [...prevState.listaSalva, save],
     }));
     this.setState({
       cardName: '',
@@ -45,49 +53,60 @@ class App extends React.Component {
       cardAttr1: 0,
       cardAttr2: 0,
       cardAttr3: 0,
-    });
+      cardTrunfo: false,
+    }, () => this.temTriunfo());
   };
-  
+
+  deleteCard = (aa) => {
+    this.setState((prevState) => ({
+      listaSalva: prevState.listaSalva.filter((bb) => bb.cardName !== aa),
+    }), () => this.temTriunfo());
+  }
 
   render() {
     const { state } = this;
-    const arr = [
-      state.cardName,
-      state.cardDescription,
-      state.cardImage,
-      state.cardRare,
-      state.cardAttr1,
-      state.cardAttr2,
-      state.cardAttr3,
-      state.cardTrunfo,
-    ];
-    
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+    } = state;
+
     return (
       <>
         <Form
-          cardName={arr[0]}
-          cardDescription={arr[1]}
-          cardImage={arr[2]}
-          cardRare={arr[3]}
-          cardAttr1={arr[4]}
-          cardAttr2={arr[5]}
-          cardAttr3={arr[6]}
-          hasTrunfo={ arr[7] }
-          onInputChange={this.onInputChange}
-          isSaveButtonDisabled={!ButtonDisabled(arr)}
-          onSaveButtonClick={(event) => this.saveLista(event, arr)}
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          hasTrunfo={ hasTrunfo }
+          onInputChange={ this.onInputChange }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ (event) => this.saveLista(event, state) }
         />
         <Card
-          cardName={arr[0]}
-          cardDescription={arr[1]}
-          cardImage={arr[2]}
-          cardRare={arr[3]}
-          cardAttr1={arr[4]}
-          cardAttr2={arr[5]}
-          cardAttr3={arr[6]}
-          cardTrunfo={state.cardTrunfo}
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardTrunfo={ cardTrunfo }
         />
-        <CardList infoCard={ state.listaSalva } />
+        <CardList
+          infoCard={ state.listaSalva }
+          deleteLi={ this.deleteCard }
+        />
       </>
     );
   }

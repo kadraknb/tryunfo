@@ -1,14 +1,16 @@
+const N91 = 91;
+const N211 = 211;
+const N7 = 7;
 const limite = (...aa) => {
-  const limiteN = 91;
-  const limite210 = 211;
-  if (aa.every((bb) => bb < limiteN && bb >= 0)) {
-    return parseFloat(aa[0]) + parseFloat(aa[1]) + parseFloat(aa[2]) < limite210;
+  if (aa.every((bb) => bb < N91 && bb >= 0)) {
+    return parseFloat(aa[0]) + parseFloat(aa[1]) + parseFloat(aa[2]) < N211;
   }
   return false;
 };
 const ButtonDisabled = (aa) => {
-  if (!aa.slice(0, 7).some((bb) => !bb)) {
-    return limite(aa[4], aa[5], aa[6]);
+  const arr = Object.values(aa);
+  if (!arr.slice(0, N7).some((bb) => !bb)) {
+    return limite(arr[4], arr[5], arr[6]);
   }
 
   return false;

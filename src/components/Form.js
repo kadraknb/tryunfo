@@ -1,15 +1,5 @@
-/* /* eslint-disable no-multiple-empty-lines */
-
 import React from 'react';
-/*
-
-class ccccc extends React.Component {
-  render() {
-    return ();
-  }
-}
-
-export default ccccc; */
+import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
@@ -106,5 +96,33 @@ class Form extends React.Component {
     );
   }
 }
+Form.propTypes = {
+  cardName: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardAttr1: PropTypes.number,
+  cardAttr2: PropTypes.number,
+  cardAttr3: PropTypes.number,
+  cardImage: PropTypes.string,
+  cardRare: PropTypes.string,
+  cardTrunfo: PropTypes.bool,
+  hasTrunfo: PropTypes.bool,
+  isSaveButtonDisabled: PropTypes.bool,
+  onInputChange: PropTypes.func,
+  onSaveButtonClick: PropTypes.func,
+};
 
+Form.defaultProps = {
+  cardName: '',
+  cardDescription: '',
+  cardImage: '',
+  cardRare: '',
+  cardAttr1: '',
+  cardAttr2: '',
+  cardAttr3: '',
+  cardTrunfo: false,
+  hasTrunfo: false,
+  isSaveButtonDisabled: true,
+  onInputChange: 'func',
+  onSaveButtonClick: 'func',
+};
 export default Form;

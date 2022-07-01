@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
@@ -26,5 +27,27 @@ class Card extends React.Component {
     );
   }
 }
+
+Card.propTypes = {
+  cardName: PropTypes.string,
+  cardDescription: PropTypes.string,
+  cardAttr1: PropTypes.number,
+  cardAttr2: PropTypes.number,
+  cardAttr3: PropTypes.number,
+  cardImage: PropTypes.string,
+  cardRare: PropTypes.string,
+  cardTrunfo: PropTypes.bool,
+};
+
+Card.defaultProps = {
+  cardName: '',
+  cardDescription: '',
+  cardImage: '',
+  cardRare: '',
+  cardAttr1: '',
+  cardAttr2: '',
+  cardAttr3: '',
+  cardTrunfo: false,
+};
 
 export default Card;
