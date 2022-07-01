@@ -46,6 +46,7 @@ class App extends React.Component {
       cardAttr3: 0,
     });
   };
+  
 
   render() {
     const { state } = this;
@@ -57,6 +58,7 @@ class App extends React.Component {
       state.cardAttr1,
       state.cardAttr2,
       state.cardAttr3,
+      state.cardTrunfo,
     ];
 
     return (
@@ -69,6 +71,7 @@ class App extends React.Component {
           cardAttr1={arr[4]}
           cardAttr2={arr[5]}
           cardAttr3={arr[6]}
+          hasTrunfo={ arr[7] }
           onInputChange={this.onInputChange}
           isSaveButtonDisabled={!ButtonDisabled(arr)}
           onSaveButtonClick={(event) => this.saveLista(event, arr)}
