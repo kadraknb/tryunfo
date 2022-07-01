@@ -3,6 +3,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import ButtonDisabled from './components/ButtonDisabled';
 import Button from './components/save-button';
+import CardList from './components/cardList';
 
 const { saveButton, clickButton } = Button;
 
@@ -60,7 +61,7 @@ class App extends React.Component {
       state.cardAttr3,
       state.cardTrunfo,
     ];
-
+    
     return (
       <>
         <Form
@@ -86,6 +87,7 @@ class App extends React.Component {
           cardAttr3={arr[6]}
           cardTrunfo={state.cardTrunfo}
         />
+        <CardList infoCard={ state.listaSalva } />
       </>
     );
   }

@@ -7,7 +7,7 @@ const limite = (...aa) => {
   return false;
 };
 const ButtonDisabled = (aa) => {
-  if (!aa.some((bb) => !bb)) {
+  if (!aa.slice(0, 7).some((bb) => !bb)) {
     return limite(aa[4], aa[5], aa[6]);
   }
 
