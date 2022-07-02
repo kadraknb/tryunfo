@@ -21,7 +21,7 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       listaSalva: [],
-      oqFiltra: ['', ''],
+      oqFiltra: ['', '', ''],
     };
   }
 

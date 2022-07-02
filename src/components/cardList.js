@@ -5,9 +5,10 @@ import Card from './Card';
 class CardList extends React.Component {
   render() {
     const { infoCard, deleteLi, oqFiltrar } = this.props;
-    const arr = ['cardName', 'cardRare'];
+    const arr = ['cardName', 'cardRare', 'cardTrunfo'];
+
     const listaRetornada = () => (infoCard.filter((aa) => oqFiltrar
-      .every((bb, idx) => aa[arr[idx]].includes(bb))));
+      .every((bb, idx) => aa[arr[idx]].toString().includes(bb))));
 
     return (
       <ol>
@@ -46,7 +47,7 @@ CardList.propTypes = {
 CardList.defaultProps = {
   infoCard: 'PropTypes.array',
   deleteLi: 'PropTypes.func',
-  oqFiltrar: ['', ''],
+  oqFiltrar: ['', '', ''],
 };
 
 export default CardList;

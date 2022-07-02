@@ -8,22 +8,24 @@ class Filtro extends React.Component {
     this.state = {
       nomeAFiltra: '',
       filtroRare: '',
+      filtroCardTrunfo: '',
     };
   }
 
   passvalor = () => {
     const { passState } = this.props;
-    const { nomeAFiltra, filtroRare } = this.state;
-    passState([nomeAFiltra, filtroRare]);
+    const { nomeAFiltra, filtroRare, filtroCardTrunfo } = this.state;
+    passState([nomeAFiltra, filtroRare, filtroCardTrunfo]);
   }
 
   elteraState = (event) => {
-    const { name, value } = event.target;
-    this.setState(({ [name]: value }), this.passvalor);
+    const { name, value, checked, type } = event.target;
+    const res = type === 'checkbox' ? checked : value;
+    this.setState(({ [name]: res }), this.passvalor);
   }
 
   render() {
-    const { nomeAFiltra, filtroRare } = this.state;
+    const { nomeAFiltra, filtroRare, filtroCardTrunfo } = this.state;
 
     return (
       <>
@@ -32,12 +34,14 @@ class Filtro extends React.Component {
           name="nomeAFiltra"
           value={ nomeAFiltra }
           onChange={ this.elteraState }
+          disabled={ filtroCardTrunfo }
           data-testid="name-filter"
         />
         <select
           name="filtroRare"
           value={ filtroRare }
           onChange={ this.elteraState }
+          disabled={ filtroCardTrunfo }
           data-testid="rare-filter"
         >
           <option value="">todas</option>
@@ -45,6 +49,13 @@ class Filtro extends React.Component {
           <option value="lendario">raro</option>
           <option>muito raro</option>
         </select>
+        <input
+          type="checkbox"
+          name="filtroCardTrunfo"
+          data-testid="trunfo-filter"
+          checked={ filtroCardTrunfo }
+          onChange={ this.elteraState }
+        />
       </>
     );
   }
