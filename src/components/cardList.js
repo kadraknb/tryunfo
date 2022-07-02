@@ -4,10 +4,12 @@ import Card from './Card';
 
 class CardList extends React.Component {
   render() {
-    const { infoCard, deleteLi } = this.props;
+    const { infoCard, deleteLi, oqFiltrar } = this.props;
+    const listaRetornada = () => infoCard.filter((aa) => aa.cardName.includes(oqFiltrar));
+
     return (
       <ol>
-        {infoCard.map((aa) => (
+        {listaRetornada().map((aa) => (
           <li key={ aa.cardName }>
             <Card
               cardName={ aa.cardName }
@@ -36,11 +38,13 @@ class CardList extends React.Component {
 CardList.propTypes = {
   infoCard: PropTypes.arrayOf(PropTypes.object),
   deleteLi: PropTypes.func,
+  oqFiltrar: PropTypes.string
 };
 
 CardList.defaultProps = {
   infoCard: 'PropTypes.array',
   deleteLi: 'PropTypes.func',
+  oqFiltrar: '',
 };
 
 export default CardList;

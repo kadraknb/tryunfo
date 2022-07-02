@@ -3,6 +3,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import ButtonDisabled from './components/ButtonDisabled';
 import CardList from './components/cardList';
+import Filtro from './components/filtro';
 
 class App extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       listaSalva: [],
+      oqFiltra: '',
     };
   }
 
@@ -63,6 +65,10 @@ class App extends React.Component {
     }), () => this.temTriunfo());
   }
 
+  lerFiltro = (seila) => {
+    this.setState({ oqFiltra: seila });
+  };
+
   render() {
     const { state } = this;
     const {
@@ -77,7 +83,6 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
     } = state;
-
     return (
       <>
         <Form
@@ -103,7 +108,9 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardTrunfo={ cardTrunfo }
         />
+        <Filtro passState={ this.lerFiltro } />
         <CardList
+          oqFiltrar={ state.oqFiltra }
           infoCard={ state.listaSalva }
           deleteLi={ this.deleteCard }
         />
