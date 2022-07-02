@@ -6,10 +6,8 @@ class CardList extends React.Component {
   render() {
     const { infoCard, deleteLi, oqFiltrar } = this.props;
     const arr = ['cardName', 'cardRare', 'cardTrunfo'];
-
     const listaRetornada = () => (infoCard.filter((aa) => oqFiltrar
       .every((bb, idx) => aa[arr[idx]].toString().includes(bb))));
-
     return (
       <ol>
         {listaRetornada().map((aa) => (

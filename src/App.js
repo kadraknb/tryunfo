@@ -44,6 +44,7 @@ class App extends React.Component {
 
   saveLista = (event, save) => {
     event.preventDefault();
+    save.cardRare = save.cardRare === 'muito raro' ? 'lendario' : save.cardRare;
     this.setState((prevState) => ({
       listaSalva: [...prevState.listaSalva, save],
     }));

@@ -15,7 +15,11 @@ class Filtro extends React.Component {
   passvalor = () => {
     const { passState } = this.props;
     const { nomeAFiltra, filtroRare, filtroCardTrunfo } = this.state;
-    passState([nomeAFiltra, filtroRare, filtroCardTrunfo]);
+    passState([
+      nomeAFiltra,
+      filtroRare,
+      filtroCardTrunfo,
+    ]);
   }
 
   elteraState = (event) => {
@@ -46,8 +50,8 @@ class Filtro extends React.Component {
         >
           <option value="">todas</option>
           <option>normal</option>
-          <option value="lendario">raro</option>
-          <option>muito raro</option>
+          <option>raro</option>
+          <option value="lendario">muito raro</option>
         </select>
         <input
           type="checkbox"

@@ -72,7 +72,7 @@ class Form extends React.Component {
           onChange={ onInputChange }
         >
           <option>normal</option>
-          <option value="lendario">raro</option>
+          <option>raro</option>
           <option>muito raro</option>
         </select>
         inserir se a carta é o Super Trunfo
