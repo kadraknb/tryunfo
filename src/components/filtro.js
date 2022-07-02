@@ -7,33 +7,45 @@ class Filtro extends React.Component {
 
     this.state = {
       nomeAFiltra: '',
+      filtroRare: '',
     };
   }
 
   passvalor = () => {
     const { passState } = this.props;
-    const { nomeAFiltra } = this.state;
-    passState(nomeAFiltra);
+    const { nomeAFiltra, filtroRare } = this.state;
+    passState([nomeAFiltra, filtroRare]);
   }
 
   elteraState = (event) => {
-    // this.passvalor();
     const { name, value } = event.target;
     this.setState(({ [name]: value }), this.passvalor);
   }
 
   render() {
-    // const { filtoN } = this.props;
-    const { nomeAFiltra } = this.state;
+    const { nomeAFiltra, filtroRare } = this.state;
 
     return (
-      <input
-        type="text"
-        name="nomeAFiltra"
-        value={ nomeAFiltra }
-        onChange={ this.elteraState }
-        data-testid="name-filter"
-      />
+      <>
+        <input
+          type="text"
+          name="nomeAFiltra"
+          value={ nomeAFiltra }
+          onChange={ this.elteraState }
+          data-testid="name-filter"
+        />
+        <select
+          name="filtroRare"
+          value={ filtroRare }
+          onChange={ this.elteraState }
+          data-testid="rare-filter"
+        >
+          <option value="">todas</option>
+          <option>normal</option>
+          <option value="lendario">raro</option>
+          <option>muito raro</option>
+        </select>
+      </>
     );
   }
 }
