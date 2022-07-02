@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class Filtro extends React.Component {
   constructor() {
@@ -60,36 +60,12 @@ class Filtro extends React.Component {
     );
   }
 }
-// Filtro.propTypes = {
-//   infoCard: PropTypes.arrayOf(PropTypes.object),
-//   deleteLi: PropTypes.func,
-// };
+Filtro.propTypes = {
+  passState: PropTypes.func,
+};
 
-// Filtro.defaultProps = {
-//   infoCard: 'PropTypes.array',
-//   deleteLi: 'PropTypes.func',
-// };
+Filtro.defaultProps = {
+  passState: 'PropTypes.func',
+};
 
 export default Filtro;
-
-// {infoCard.map((aa) => (
-//     <li key={ aa.cardName }>
-//       <Card
-//         cardName={ aa.cardName }
-//         cardDescription={ aa.cardDescription }
-//         cardImage={ aa.cardImage }
-//         cardRare={ aa.cardRare }
-//         cardAttr1={ aa.cardAttr1 }
-//         cardAttr2={ aa.cardAttr2 }
-//         cardAttr3={ aa.cardAttr3 }
-//         cardTrunfo={ aa.cardTrunfo }
-//       />
-//       <button
-//         type="button"
-//         data-testid="delete-button"
-//         onClick={ () => deleteLi(aa.cardName) }
-//       >
-//         Excluir
-//       </button>
-//     </li>
-//   ))}
